@@ -1,0 +1,8 @@
+name: newtify
+version: 1.2.3
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+dependencies:
+  http_server: ^0.9.8+1
+
+dev_dependencies:
