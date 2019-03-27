@@ -1,6 +1,6 @@
 public class Fabbonacci{
 
-    public static int fibo(int n){
+    public static long fibo(long n){
         if(n < 2){
             return n;
         }
@@ -8,7 +8,7 @@ public class Fabbonacci{
     }
 
     public static void main(String[] args){
-       fibo(10);
+        fibo(Long.parseLong(args[0]));
     }
 
 }
