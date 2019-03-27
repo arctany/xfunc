@@ -1,10 +1,11 @@
 import 'dart:io';
-import 'dart:io';
+import 'package:args/args.dart';
 import 'package:http_server/http_server.dart' show VirtualDirectory;
 
 final String PATH_TO_WEB_CONTENT = "web";
 
-void main() {
+void main(List<String> args) {
+
   HttpServer.bind(InternetAddress.LOOPBACK_IP_V4, 8080).then((HttpServer server) {
     print("Server up; try http://${server.address.address}:${server.port}/index.html");
     final String root = Platform.script.resolve(PATH_TO_WEB_CONTENT).toFilePath();
@@ -18,13 +19,22 @@ void main() {
       (req.method == "PUT" ? processPut : virDir.serveRequest)(req);
     });
 
-    Future.delayed(new Duration(seconds: 20),(){
-//      server.close(force:true);
-    exit(6);
-    });
+    ArgParser parser = new ArgParser();
+    parser.addOption('training',defaultsTo: "false");
+    var result = parser.parse(args);
+    if(result["training"] == "true"){
+      Future.delayed(new Duration(seconds: 10),(){
+        //exit 0 or server.close will do
+      server.close(force:true);
+//        exit(0);
+      });
+
+    }
   });
 
 }
+
+
 
 void processPut(HttpRequest request) {
   final String filePath = request.uri.toFilePath();
