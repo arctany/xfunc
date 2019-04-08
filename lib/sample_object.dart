@@ -466,9 +466,7 @@ class Education{
   Map<String, dynamic> toJson() => _$EducationToJson(this);
 }
 
-
 List<String> degrees = <String>['master','bachelor','doctor','elem','highschool','etc'];
-
 
 genRandomMap(int entries){
   Map<String,String> map = <String,String>{};
@@ -492,7 +490,7 @@ List<Citizen> getRandomCitizens(int a){
     c.income= ran.nextDouble();
     c.education=e;
     c.address=new Address()
-      ..city=randomAlpha(3)..detail=genRandomMap(10);
+      ..city=randomAlpha(3)..detail=genRandomMap(1);
     r.add(c);
 
     c.age=ran.nextInt(90);
@@ -501,8 +499,8 @@ List<Citizen> getRandomCitizens(int a){
     c.weight = ran.nextDouble();
     c.hobby = randomAlpha(20);
     c.birthday = new DateTime.now();
-    c.features=genRandomMap(5);
-    c.financeIds = genRandomMap(10);
+    c.features=genRandomMap(1);
+    c.financeIds = genRandomMap(1);
     c.traceId = randomAlpha(30);
     c.status = 1;
     c.socialCreditIdx = ran.nextInt(10000);
@@ -511,7 +509,7 @@ List<Citizen> getRandomCitizens(int a){
     c.registerTime = new DateTime.now();
     c.provenId = ran.nextDouble();
     c.placeOfBorn = new Address()
-      ..city=randomAlpha(3)..detail=genRandomMap(10)..province=randomAlpha(3);
+      ..city=randomAlpha(3)..detail=genRandomMap(1)..province=randomAlpha(3);
     c.overallSPCIndx= ran.nextDouble();
     c.overallBAIndx = randomBetween(10, 100000);
     c.occupation = randomString(5);
@@ -533,15 +531,15 @@ List<Citizen> getRandomCitizens(int a){
     c.idType = randomBetween(1, 5);
     c.communicationDetail =  new CommunicationDetail()..__socialNetworkAccountIds={
       randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
-      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
+//      randomAlpha(6):randomAlphaNumeric(20),
     }..emergencyContacts=[randomAlpha(20),randomAlpha(20),randomAlpha(20),randomAlpha(20)]
       ..phoneNum = randomAlphaNumeric(11).._phoneNum2=randomAlphaNumeric(20)
       .._primaryEmailAddress = '${randomString(6)}@${randomAlpha(9)}'..secEmailAddress
@@ -552,13 +550,13 @@ List<Citizen> getRandomCitizens(int a){
     for(int j=0; j<3; j++){
       hs.add(new Housing()..location=new Address()..rId= i%3..price=ran.nextDouble()
       ..complexDetail = {
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
-        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}}
+        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(1)}}}
+//        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
+//        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
+//        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
+//        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
+//        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}},
+//        randomAlpha(3): {randomAlpha(3):{randomAlpha(3):{randomAlpha(3):genRandomMap(10)}}}
       }
       );
     }
