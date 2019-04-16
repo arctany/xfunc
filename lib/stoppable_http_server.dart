@@ -29,14 +29,17 @@ void main(List<String> args) {
   int tt = int.parse(result['train-time']);
   double preTimeMark = stopwatch.elapsedMilliseconds/1000.roundToDouble();
 
-  Timer timer = Timer.periodic(new Duration(seconds: interval), (Timer t){
+  Timer timer = Timer.periodic(new Duration(milliseconds: interval), (Timer t){
     double current  = stopwatch.elapsedMilliseconds/1000.roundToDouble();
     double failedPersec  = counter_fail / (current - preTimeMark) < 1 ? 0 : (counter_fail / (current-preTimeMark)).roundToDouble();
     double successPersec = counter_success / (current - preTimeMark) < 1 ? 0 : (counter_success / (current-preTimeMark)).roundToDouble();
     String line = '''   \t ${counter+counter_fail}            ${current}          ${successPersec}      ${failedPersec} ''';
     counter_success = 0;
     counter_fail = 0;
+
     print("$line");
+
+
     preTimeMark = current;
   });
 
@@ -44,13 +47,7 @@ void main(List<String> args) {
     print("Server up; try http://${server.address.address}:${server.port}/index.html");
     print("\n\n\n");
     print('\t --total---------tel---------succ---------fail------\t');
-//    final String root = Platform.script.resolve(PATH_TO_WEB_CONTENT).toFilePath();
-//    final virDir = new VirtualDirectory(root)
-//      ..followLinks = true
-//      ..jailRoot = false;
     server.listen((HttpRequest req) {
-//      print("${req.method} ${req.uri};\tcached ${req.headers.ifModifiedSince}");
-//      (req.method == "PUT" ? processPut : virDir.serveRequest)(req);
        if(req.method == "GET" || req.method == "POST") {
          counter++;
          processReq(req);
@@ -85,7 +82,7 @@ void processReq(HttpRequest request){
     request.response.write(jsonEncode(jsonString));
     request.response.close().then((v){
       counter_success ++;
-    }).timeout(new Duration(seconds:1)).catchError((e){
+    }).timeout(new Duration(seconds:5)).catchError((e){
       counter_fail ++;
     });
   }
@@ -105,5 +102,6 @@ void processPut(HttpRequest request) {
       ..close();
     print("Wrote to file '${file.path}'");
   });
-}
 
+
+}
