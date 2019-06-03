@@ -1,0 +1,7 @@
+name: newtify
+version: 1.2.3
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+dependencies:
+  random_string: ^0.0.2
+
