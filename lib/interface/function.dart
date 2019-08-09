@@ -1,6 +1,8 @@
-
+typedef XFunction getF();
 
 abstract class XFunction{
+
+  static getF function ;
 
   String handle();
 
@@ -8,4 +10,3 @@ abstract class XFunction{
 
 }
 
-typedef getInstance();

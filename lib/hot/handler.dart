@@ -9,21 +9,13 @@ execute(List<String> s) {
       .then((server) {
     server.listen((HttpRequest request) {
       if(request.uri.path.contains('hello')){
-//        request.response.write('10');
-        request.response.write(getInstance().handle());
+//        request.response.write(getInstance().handle());
       }
       request.response.close();
     });
   });
 }
 
-//String handle() => '${test()} Hello New World';
-
-//String test() => 'one ${randomAlpha(10)}' ;
-
-//String test() => 'test';
-
-getInstance()=> new EmptyHandler();
 
 
 class EmptyHandler implements XFunction{
@@ -37,12 +29,12 @@ class EmptyHandler implements XFunction{
   @override
   String initialize() {
     // TODO: implement initialize
-
     return null;
   }
 
 }
 
 void main(List<String> args){
+
   execute(args);
 }

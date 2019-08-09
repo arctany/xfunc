@@ -11,8 +11,8 @@ import 'handler.dart';
 
 vm.VmService serviceClient;
 
-//File dir = new File('/Users/haowu/Downloads/workspace/code_repos/dart-new/ext-module/lib');
-File dir = new File('/Users/haowu/IdeaProjects/xfunc/lib/hot-ext');
+File dir = new File('/Users/haowu/Downloads/workspace/code_repos/dart-new/ext-module/lib');
+//File dir = new File('/Users/haowu/IdeaProjects/xfunc/lib/hot-ext');
 
 void main(List<String> args) async {
 

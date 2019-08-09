@@ -1,0 +1,68 @@
+main = han::main;
+library from "package:newtify/hot/handler.dart" as han {
+
+  import "dart:async";
+  import "dart:io";
+  import "package:random_string/random_string.dart";
+
+  static method execute(core::List<core::String> s) → dynamic {
+    _ht::HttpServer::bind(io::InternetAddress::anyIPv6, 8080, shared: true).{asy::Future::then}<dynamic>((_ht::HttpServer server) → core::Null {
+      server.{asy::Stream::listen}((_ht::HttpRequest request) → core::Null {
+        if(request.{_ht::HttpRequest::uri}.{core::Uri::path}.{core::String::contains}("hello")) {
+          request.{_ht::HttpRequest::response}.{io::IOSink::write}(han::handle());
+        }
+        request.{_ht::HttpRequest::response}.{io::IOSink::close}();
+      });
+    });
+  }
+  static method handle() → core::String
+    return "${han::test()} Hello New World";
+  static method test() → core::String
+    return "one ${ran::randomAlpha(10)}";
+  static method main(core::List<core::String> args) → dynamic {
+    han::execute(args);
+  }
+}
+library random_string from "package:random_string/random_string.dart" as ran {
+
+  import "dart:math";
+
+  static const field core::int ASCII_START = 33;
+  static const field core::int ASCII_END = 126;
+  static const field core::int NUMERIC_START = 48;
+  static const field core::int NUMERIC_END = 57;
+  static const field core::int LOWER_ALPHA_START = 97;
+  static const field core::int LOWER_ALPHA_END = 122;
+  static const field core::int UPPER_ALPHA_START = 65;
+  static const field core::int UPPER_ALPHA_END = 90;
+  static method randomBetween(core::int from, core::int to) → core::int {
+    if(from.{core::num::>}(to))
+      throw core::Exception::•("${from} cannot be > ${to}");
+    math::Random rand = math::Random::•();
+    return to.{core::num::-}(from).{core::num::*}(rand.{math::Random::nextDouble}()).{core::num::toInt}().{core::num::+}(from);
+  }
+  static method randomString(core::int length, {core::int from = ran::ASCII_START, core::int to = ran::ASCII_END}) → core::String {
+    return core::String::fromCharCodes(core::List::generate<core::int>(length, (core::int index) → core::int => ran::randomBetween(from, to)));
+  }
+  static method randomNumeric(core::int length) → core::String
+    return ran::randomString(length, from: ran::NUMERIC_START, to: ran::NUMERIC_END);
+  static method randomAlpha(core::int length) → core::String {
+    core::int lowerAlphaLength = ran::randomBetween(0, length);
+    core::int upperAlphaLength = length.{core::num::-}(lowerAlphaLength);
+    core::String lowerAlpha = ran::randomString(lowerAlphaLength, from: ran::LOWER_ALPHA_START, to: ran::LOWER_ALPHA_END);
+    core::String upperAlpha = ran::randomString(upperAlphaLength, from: ran::UPPER_ALPHA_START, to: ran::UPPER_ALPHA_END);
+    return ran::randomMerge(lowerAlpha, upperAlpha);
+  }
+  static method randomAlphaNumeric(core::int length) → core::String {
+    core::int alphaLength = ran::randomBetween(0, length);
+    core::int numericLength = length.{core::num::-}(alphaLength);
+    core::String alpha = ran::randomAlpha(alphaLength);
+    core::String numeric = ran::randomNumeric(numericLength);
+    return ran::randomMerge(alpha, numeric);
+  }
+  static method randomMerge(core::String a, core::String b) → core::String {
+    core::List<core::int> mergedCodeUnits = core::List::from<core::int>("${a}${b}".{core::String::codeUnits});
+    mergedCodeUnits.{core::List::shuffle}();
+    return core::String::fromCharCodes(mergedCodeUnits);
+  }
+}

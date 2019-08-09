@@ -1,0 +1,6 @@
+main = <No Member>;
+library from "file:///Users/haowu/IdeaProjects/xfunc/lib/hot-ext/handler.dart" as han {
+
+  static method handle() → core::String
+    return "Hello New World";
+}

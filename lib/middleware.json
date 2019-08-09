@@ -1,0 +1,30 @@
+{
+  "kvstore": {
+  "type":"tair",
+  "entries":
+  [
+    {
+      "name": "ItemDetailTair",
+      "env": {
+        "default": {
+          "namespace":"1234",
+          "timeout":"1000",
+          "localcache_size": "30000",
+          "localcache_timeout":"150"
+        }
+      }
+    },
+    {
+      "name": "ItemDetailTair2",
+      "env": {
+        "default": {
+          "namespace":"1234",
+          "timeout":"1000",
+          "localcache_size": "30000",
+          "localcache_timeout": "150"
+        }
+      }
+    }
+  ]
+}
+}
