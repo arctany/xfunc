@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>2D Avatar</title>
+    <style>
+        body { margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #2a2a2a; }
+        .avatar { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; transition: all 0.3s ease; }
+        .avatar:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    </style>
+</head>
+<body>
+    <img id="avatar" class="avatar" src="default_avatar.png" alt="AI Assistant Avatar">
+    <script>
+        // 简单的动画效果
+        const avatar = document.getElementById('avatar');
+        function pulse() {
+            avatar.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                avatar.style.transform = 'scale(1)';
+            }, 1000);
+        }
+        // 定期呼吸效果
+        setInterval(pulse, 3000);
+        
+        // 与父窗口通信的接口
+        window.updateExpression = function(expression) {
+            // 根据表情调整图片效果，这里只是简单示例
+            if (expression === 'happy') {
+                avatar.style.filter = 'brightness(1.2)';
+            } else if (expression === 'sad') {
+                avatar.style.filter = 'brightness(0.8) sepia(0.2)';
+            } else if (expression === 'thinking') {
+                avatar.style.filter = 'hue-rotate(15deg)';
+            } else {
+                avatar.style.filter = 'none';
+            }
+        };
+    </script>
+</body>
+</html>

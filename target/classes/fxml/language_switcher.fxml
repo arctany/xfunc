@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.arctany.aivirtualassistant.controller.LanguageSwitcherController"
+      spacing="10"
+      alignment="CENTER"
+      style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+
+    <Label text="%customize.language.selection" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="chineseButton" text="中文" 
+                onAction="#switchToChinese"
+                style="-fx-min-width: 100px; -fx-min-height: 30px; -fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+        
+        <Button fx:id="englishButton" text="English" 
+                onAction="#switchToEnglish"
+                style="-fx-min-width: 100px; -fx-min-height: 30px; -fx-background-color: #2196F3; -fx-text-fill: white;"/>
+    </HBox>
+    
+    <Label fx:id="currentLanguageLabel" text="当前语言：中文" 
+           style="-fx-font-size: 14px; -fx-font-style: italic;"/>
+
+    <padding>
+        <Insets top="10" right="20" bottom="10" left="20"/>
+    </padding>
+</VBox> 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="500.0" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arctany.aivirtualassistant.controller.CustomizeController">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="2D/3D形象">
+               <content>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="选择形象类型:" />
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
+                           <children>
+                              <Button fx:id="load2DButton" mnemonicParsing="false" text="加载2D形象" />
+                              <Button fx:id="load3DButton" mnemonicParsing="false" text="加载3D形象" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+          <Tab text="AI生成">
+               <content>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="输入形象描述:" />
+                        <TextArea fx:id="descriptionTextArea" prefHeight="250.0" prefWidth="200.0" promptText="例如：一个年轻的亚洲女性，长发，戴眼镜，友好的微笑..." wrapText="true" />
+                        <Button fx:id="generateButton" mnemonicParsing="false" text="生成形象" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+          <Tab text="从图片创建">
+               <content>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="从图片文件创建形象:" />
+                        <Button fx:id="selectImageButton" mnemonicParsing="false" text="选择图片文件" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+          <Tab text="语音定制">
+               <content>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="选择预设语音:" />
+                        <Button fx:id="selectVoiceButton" mnemonicParsing="false" text="选择语音" />
+                        <Label text="从音频文件创建语音:" />
+                        <Button fx:id="loadVoiceButton" mnemonicParsing="false" text="加载音频文件" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="取消" />
+            <Button fx:id="saveButton" mnemonicParsing="false" text="保存" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane> 
